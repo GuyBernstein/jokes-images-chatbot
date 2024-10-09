@@ -40,8 +40,8 @@ public class BotController {
         String res = "Not found";
         if (params.containsKey("joke")) {
             res = jokesService.searchJoke(params.get("joke"));
-        } else if (params.containsKey("product")) {
-            res = jokesService.searchJoke(params.get("product"));
+        } else if (params.containsKey("movie")) {
+            res = jokesService.searchJoke(params.get("movie"));
         }
         return new ResponseEntity<>(BotResponse.of(res), HttpStatus.OK);
     }
