@@ -16,7 +16,7 @@ public class JokesService {
     @Autowired
     ObjectMapper objectMapper;
 
-    public String getJokeId(String keyword) throws UnirestException, JsonProcessingException {
+    public String searchJoke(String keyword) throws UnirestException, JsonProcessingException {
         Unirest.setTimeouts(0, 0);
         HttpResponse<String> response = Unirest.get("https://api.chucknorris.io/jokes/search?query=" + keyword)
                 .asString();
