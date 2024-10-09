@@ -1,6 +1,8 @@
 package com.handson.chatbot.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.handson.chatbot.service.IMDBService;
+import com.handson.chatbot.service.JokesService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +21,16 @@ public class BotController {
     @Autowired
     IMDBService imdbService;
 
+    @Autowired
+    JokesService jokesService;
+
     @RequestMapping(value = "/imdb", method = RequestMethod.GET)
     public ResponseEntity<?> getProduct(@RequestParam String keyword) throws UnirestException {
         return new ResponseEntity<>(imdbService.searchMovies(keyword), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/joke", method = RequestMethod.GET)
+    public ResponseEntity<?> getJoke(@RequestParam String keyword) throws UnirestException, JsonProcessingException {
+        return new ResponseEntity<>(jokesService.getJokeId(keyword), HttpStatus.OK);
     }
 }
