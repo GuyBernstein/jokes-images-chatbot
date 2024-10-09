@@ -1,6 +1,7 @@
 package com.handson.chatbot.controller;
 
 import com.handson.chatbot.service.IMDBService;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,7 @@ public class BotController {
     IMDBService imdbService;
 
     @RequestMapping(value = "/imdb", method = RequestMethod.GET)
-    public ResponseEntity<?> getProduct(@RequestParam String keyword)
-    {
+    public ResponseEntity<?> getProduct(@RequestParam String keyword) throws UnirestException {
         return new ResponseEntity<>(imdbService.searchMovies(keyword), HttpStatus.OK);
     }
 }
